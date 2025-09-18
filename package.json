@@ -1,12 +1,22 @@
 {
-  "name": "app",
-  "private": true,
+  "files": ["dist"],
+  "main": "./dist/component-library.cjs.js",
+  "module": "./dist/component-library.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/component-library.es.js",
+      "require": "./dist/component-library.cjs.js"
+    }
+  },
+  "name": "@rdwall3r/component-library",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+  "lint": "eslint .",
+  "test": "vitest run",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

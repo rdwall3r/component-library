@@ -4,18 +4,16 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+// No Node.js imports needed
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-const dirname =
-  typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+// Use Vite's native resolution
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
     lib: {
-      entry: path.resolve(dirname, 'src/index.ts'),
+  entry: 'src/index.ts',
       name: 'ComponentLibrary',
       fileName: (format) => `component-library.${format}.js`,
       formats: ['es', 'cjs'],
@@ -37,7 +35,7 @@ export default defineConfig({
         extends: true,
         plugins: [
           storybookTest({
-            configDir: path.join(dirname, '.storybook'),
+            configDir: '.storybook',
           }),
         ],
         test: {
